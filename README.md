@@ -1,0 +1,1 @@
+Solution of the frontend _practive_ project `Weight tracker` found on [youtube](https://www.youtube.com/watch?v=W8-LyEqZNMM)
