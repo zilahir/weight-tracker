@@ -18,33 +18,31 @@ const Home = () => {
 	const [selectedDate, setSelectedDate] = useState(new Date())
 	const [weight, setWeight] = useState(null)
 	return (
-		<div className={styles.rootContainer}>
-			<Section>
-				<div className={styles.addNewContainer}>
-					<div className={styles.oneInput}>
-						<Icon icon={calendar} size="1em" />
-						<DatePicker
-							selected={selectedDate}
-							onChange={date => setSelectedDate(date)}
-						/>
-					</div>
-					<div className={styles.oneInput}>
-						<input
-							type="number"
-							onChange={w => setWeight(w.target.value)}
-							value={weight}
-							placeholder="Enter your weight"
-						/>
-					</div>
-					<div className={styles.oneInput}>
-						<Button
-							onClick={() => null}
-							label="Add"
-						/>
-					</div>
+		<Section>
+			<div className={styles.addNewContainer}>
+				<div className={styles.oneInput}>
+					<Icon icon={calendar} size="1em" />
+					<DatePicker
+						selected={selectedDate}
+						onChange={date => setSelectedDate(date)}
+					/>
 				</div>
-			</Section>
-		</div>
+				<div className={styles.oneInput}>
+					<input
+						type="number"
+						onChange={w => setWeight(w.target.value)}
+						value={weight}
+						placeholder="Enter your weight"
+					/>
+				</div>
+				<div className={styles.oneInput}>
+					<Button
+						onClick={() => null}
+						label="Add"
+					/>
+				</div>
+			</div>
+		</Section>
 	)
 }
 
