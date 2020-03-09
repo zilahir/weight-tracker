@@ -5,7 +5,7 @@ import { calendar } from 'react-icons-kit/feather/calendar'
 import 'react-datepicker/dist/react-datepicker.css'
 
 import Section from '../common/Section'
-import styles from './Home.module.scss'
+import styles from './AddNew.module.scss'
 import Button from '../common/Button'
 
 
@@ -18,7 +18,7 @@ const Home = () => {
 	const [selectedDate, setSelectedDate] = useState(new Date())
 	const [weight, setWeight] = useState(null)
 	return (
-		<div>
+		<div className={styles.rootContainer}>
 			<Section>
 				<div className={styles.addNewContainer}>
 					<div className={styles.oneInput}>
@@ -28,20 +28,20 @@ const Home = () => {
 							onChange={date => setSelectedDate(date)}
 						/>
 					</div>
-				</div>
-				<div className={styles.oneInput}>
-					<input
-						type="number"
-						onChange={w => setWeight(w.target.value)}
-						value={weight}
-						placeholder="Enter your weight"
-					/>
-				</div>
-				<div className={styles.oneInput}>
-					<Button
-						onClick={() => null}
-						label="Add"
-					/>
+					<div className={styles.oneInput}>
+						<input
+							type="number"
+							onChange={w => setWeight(w.target.value)}
+							value={weight}
+							placeholder="Enter your weight"
+						/>
+					</div>
+					<div className={styles.oneInput}>
+						<Button
+							onClick={() => null}
+							label="Add"
+						/>
+					</div>
 				</div>
 			</Section>
 		</div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 
-import Home from './components/Home'
+import Home from './components/Pages/Home'
 
 const App = () => (
 	<div>
