@@ -17,10 +17,13 @@ import Chart from '../common/Chart'
 const Stats = () => {
 	const store = useStore()
 	const [selectedPeriod, setSelectedPeriod] = useState(1)
-
+	const [chartData, setChartData] = useState([])
 	function handlePeriodSelection(period) {
 		setSelectedPeriod(period)
 	}
+	useEffect(() => store.subscribe(() => {
+		setChartData(store.getState().weight.addedWeights)
+	}), [store])
 	return (
 		<Section
 			title="Statistics"
@@ -45,7 +48,9 @@ const Stats = () => {
 						))
 					}
 				</ul>
-				<Chart />
+				<Chart
+					chartData={chartData}
+				/>
 			</div>
 		</Section>
 	)

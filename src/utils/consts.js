@@ -7,7 +7,7 @@ export const LIFETIME = 'LIFETIME'
 
 export const periodBtns = [
 	{ id: 1, btn: WEEK },
-	{ id: 2, btn: WEEK },
-	{ id: 3, btn: WEEK },
+	{ id: 2, btn: MONTH },
+	{ id: 3, btn: YEAR },
 	{ id: 4, btn: LIFETIME },
 ]
