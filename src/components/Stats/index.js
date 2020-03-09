@@ -7,6 +7,7 @@ import Section from '../common/Section'
 import styles from './Stats.module.scss'
 import { periodBtns, TAB_BTN } from '../../utils/consts'
 import Button from '../common/Button'
+import Chart from '../common/Chart'
 
 /**
 * @author zilahir
@@ -40,6 +41,7 @@ const Stats = () => {
 						))
 					}
 				</ul>
+				<Chart />
 			</div>
 		</Section>
 	)
