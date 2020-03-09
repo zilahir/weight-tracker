@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import React, { useEffect, useState } from 'react'
 import { useStore } from 'react-redux'
-import moment from 'moment'
 
 import styles from './History.module.scss'
 import Weight from '../common/Weight'
@@ -26,7 +25,7 @@ const History = () => {
 					weights.map(currWeight => (
 						<Weight
 							weight={currWeight.weight}
-							date={moment(currWeight.selectedDate).format('YYYY-MM-DD')}
+							date={currWeight.selectedDate}
 						/>
 					))
 				}

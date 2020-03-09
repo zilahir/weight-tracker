@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { formatWeight, formatDate } from '../../../utils/formatters'
+
 /**
 * @author
 * @function Weight
@@ -11,17 +13,19 @@ const Weight = props => {
 	return (
 		<li>
 			<span>
-				{`${weight} kg`}
+				{`${formatWeight(parseFloat(weight))} kg`}
 			</span>
 			<span>
-				{date}
+				{
+					formatDate(date)
+				}
 			</span>
 		</li>
 	)
 }
 
 Weight.propTypes = {
-	date: PropTypes.string.isRequired,
+	date: PropTypes.instanceOf(Date).isRequired,
 	weight: PropTypes.number.isRequired,
 }
 

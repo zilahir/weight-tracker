@@ -9,9 +9,12 @@ import styles from './Section.module.scss'
 * */
 
 const Section = props => {
-	const { children } = props
+	const { children, title } = props
 	return (
 		<div className={styles.sectionContainer}>
+			<h1>
+				{title}
+			</h1>
 			{children}
 		</div>
 	)
@@ -19,6 +22,7 @@ const Section = props => {
 
 Section.propTypes = {
 	children: PropTypes.node.isRequired,
+	title: PropTypes.string.isRequired,
 }
 
 export default Section

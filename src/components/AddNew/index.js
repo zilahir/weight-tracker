@@ -16,7 +16,7 @@ import { addNewWeight } from '../../store/actions/weights'
 
 const AddNew = () => {
 	const [selectedDate, setSelectedDate] = useState(new Date())
-	const [weight, setWeight] = useState(null)
+	const [weight, setWeight] = useState(0)
 	const dispatch = useDispatch()
 
 	function handleNewWeight() {
@@ -29,13 +29,16 @@ const AddNew = () => {
 		])
 	}
 	return (
-		<Section>
+		<Section
+			title="Weight tracker"
+		>
 			<div className={styles.addNewContainer}>
 				<div className={styles.innerContainer}>
 					<div
 						className={styles.oneInput}
 					>
 						<DatePicker
+							showTimeSelect
 							selected={selectedDate}
 							onChange={date => setSelectedDate(date)}
 							className={styles.datePicker}
@@ -44,9 +47,11 @@ const AddNew = () => {
 					<div className={styles.oneInput}>
 						<input
 							type="number"
-							onChange={w => setWeight(w.target.value)}
+							onChange={w => setWeight(parseFloat(w.target.value))}
 							value={weight}
 							placeholder="Enter your weight"
+							step=".01"
+							min={0}
 						/>
 					</div>
 					<div className={styles.oneInput}>
