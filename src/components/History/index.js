@@ -4,6 +4,7 @@ import { useStore } from 'react-redux'
 
 import styles from './History.module.scss'
 import Weight from '../common/Weight'
+import Section from '../common/Section'
 
 
 /**
@@ -19,7 +20,10 @@ const History = () => {
 		setAllWeights(store.getState().weight.addedWeights)
 	}), [store])
 	return (
-		<div className={styles.historyRoot}>
+		<Section
+			title="History"
+			className={styles.historyRoot}
+		>
 			<ul>
 				{
 					weights.map(currWeight => (
@@ -30,7 +34,7 @@ const History = () => {
 					))
 				}
 			</ul>
-		</div>
+		</Section>
 	)
 }
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classnames from 'classnames'
 
 import styles from './Section.module.scss'
 
@@ -9,9 +10,13 @@ import styles from './Section.module.scss'
 * */
 
 const Section = props => {
-	const { children, title } = props
+	const { children, title, className } = props
 	return (
-		<div className={styles.sectionContainer}>
+		<div className={classnames(
+			styles.sectionContainer,
+			className,
+		)}
+		>
 			<h1>
 				{title}
 			</h1>
@@ -20,8 +25,13 @@ const Section = props => {
 	)
 }
 
+Section.defaultProps = {
+	className: null,
+}
+
 Section.propTypes = {
 	children: PropTypes.node.isRequired,
+	className: PropTypes.string,
 	title: PropTypes.string.isRequired,
 }
 

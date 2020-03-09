@@ -31,6 +31,7 @@ const AddNew = () => {
 	return (
 		<Section
 			title="Weight tracker"
+			className={styles.addNew}
 		>
 			<div className={styles.addNewContainer}>
 				<div className={styles.innerContainer}>
