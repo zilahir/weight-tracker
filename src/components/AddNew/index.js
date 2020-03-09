@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import DatePicker from 'react-datepicker'
 import Icon from 'react-icons-kit'
 import { calendar } from 'react-icons-kit/feather/calendar'
@@ -7,6 +8,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import Section from '../common/Section'
 import styles from './AddNew.module.scss'
 import Button from '../common/Button'
+import { addNewWeight } from '../../store/actions/weights'
 
 
 /**
@@ -17,6 +19,17 @@ import Button from '../common/Button'
 const Home = () => {
 	const [selectedDate, setSelectedDate] = useState(new Date())
 	const [weight, setWeight] = useState(null)
+	const dispatch = useDispatch()
+
+	function handleNewWeight() {
+		const newWeightObject = {
+			weight,
+			selectedDate,
+		}
+		Promise.all([
+			dispatch(addNewWeight(newWeightObject)),
+		])
+	}
 	return (
 		<Section>
 			<div className={styles.addNewContainer}>
@@ -37,7 +50,7 @@ const Home = () => {
 				</div>
 				<div className={styles.oneInput}>
 					<Button
-						onClick={() => null}
+						onClick={() => handleNewWeight()}
 						label="Add"
 					/>
 				</div>
