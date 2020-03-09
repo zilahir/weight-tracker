@@ -51,7 +51,7 @@ const AddNew = () => {
 							value={weight}
 							placeholder="Enter your weight"
 							step=".01"
-							min={0}
+							min={1}
 						/>
 					</div>
 					<div className={styles.oneInput}>
