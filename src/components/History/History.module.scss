@@ -1,0 +1,14 @@
+.historyRoot {
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        display: flex;
+        li {
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
+        }
+    }
+}
