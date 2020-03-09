@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import DatePicker from 'react-datepicker'
-import Icon from 'react-icons-kit'
-import { calendar } from 'react-icons-kit/feather/calendar'
 import 'react-datepicker/dist/react-datepicker.css'
 
 import Section from '../common/Section'
@@ -16,7 +14,7 @@ import { addNewWeight } from '../../store/actions/weights'
 * @function Home
 * */
 
-const Home = () => {
+const AddNew = () => {
 	const [selectedDate, setSelectedDate] = useState(new Date())
 	const [weight, setWeight] = useState(null)
 	const dispatch = useDispatch()
@@ -34,11 +32,13 @@ const Home = () => {
 		<Section>
 			<div className={styles.addNewContainer}>
 				<div className={styles.innerContainer}>
-					<div className={styles.oneInput}>
-						<Icon icon={calendar} size="1em" />
+					<div
+						className={styles.oneInput}
+					>
 						<DatePicker
 							selected={selectedDate}
 							onChange={date => setSelectedDate(date)}
+							className={styles.datePicker}
 						/>
 					</div>
 					<div className={styles.oneInput}>
@@ -61,4 +61,4 @@ const Home = () => {
 	)
 }
 
-export default Home
+export default AddNew
