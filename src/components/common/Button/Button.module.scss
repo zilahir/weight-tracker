@@ -1,0 +1,12 @@
+@import '../../../styles/variables';
+
+.buttonContainer {
+    button {
+        width: 130px;
+        height: 40px;
+        border: 0;
+        border: 1px solid $border-color;
+        text-transform: uppercase;
+        font-size: 14px;
+    }
+}

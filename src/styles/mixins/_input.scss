@@ -1,0 +1,11 @@
+@import '../_variables.scss';
+
+@mixin input {
+    padding: 0;
+    margin: 0;
+    width: 130px;
+    height: 40px;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid $border-color;
+}

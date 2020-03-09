@@ -1,5 +1,19 @@
+@import '../../styles/variables';
+@import '../../styles/mixins/input';
+
 .addNewContainer {
     display: flex;
     justify-content: center;
     align-items: center;
+    .innerContainer {
+        max-width: 50%;
+        display: flex;
+        flex: 1;
+        justify-content: space-between;
+    }
+    .oneInput {
+        input {
+            @include input;
+        }
+    }
 }

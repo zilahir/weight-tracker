@@ -33,26 +33,28 @@ const Home = () => {
 	return (
 		<Section>
 			<div className={styles.addNewContainer}>
-				<div className={styles.oneInput}>
-					<Icon icon={calendar} size="1em" />
-					<DatePicker
-						selected={selectedDate}
-						onChange={date => setSelectedDate(date)}
-					/>
-				</div>
-				<div className={styles.oneInput}>
-					<input
-						type="number"
-						onChange={w => setWeight(w.target.value)}
-						value={weight}
-						placeholder="Enter your weight"
-					/>
-				</div>
-				<div className={styles.oneInput}>
-					<Button
-						onClick={() => handleNewWeight()}
-						label="Add"
-					/>
+				<div className={styles.innerContainer}>
+					<div className={styles.oneInput}>
+						<Icon icon={calendar} size="1em" />
+						<DatePicker
+							selected={selectedDate}
+							onChange={date => setSelectedDate(date)}
+						/>
+					</div>
+					<div className={styles.oneInput}>
+						<input
+							type="number"
+							onChange={w => setWeight(w.target.value)}
+							value={weight}
+							placeholder="Enter your weight"
+						/>
+					</div>
+					<div className={styles.oneInput}>
+						<Button
+							onClick={() => handleNewWeight()}
+							label="Add"
+						/>
+					</div>
 				</div>
 			</div>
 		</Section>
