@@ -2,17 +2,21 @@
 import React from 'react'
 import Proptypes from 'prop-types'
 import classnames from 'classnames'
+import styled from 'styled-components'
 
 import styles from './Button.module.scss'
-import { ICON_BTN, DEFAULT_BTN } from '../../../utils/consts'
+import { TAB_BTN, DEFAULT_BTN } from '../../../utils/consts'
+
 
 /**
 * @author zilahir
 * @function Button
 * */
 
+const TabBtn = styled.div``
+
 const Button = props => {
-	const { onClick, label, containerClass, buttonClass, type, icon } = props
+	const { onClick, label, containerClass, buttonClass, type } = props
 	return (
 		<>
 			{
@@ -37,16 +41,13 @@ const Button = props => {
 							</button>
 						</div>
 					)
-					: type === ICON_BTN
+					: type === TAB_BTN
 						? (
-							<div className={classnames(
-								styles.iconButtonContainer,
+							<TabBtn className={classnames(
+								styles.tabButtonContainer,
 								containerClass,
 							)}
 							>
-								{
-									icon || null
-								}
 								<button
 									type="button"
 									onClick={onClick}
@@ -59,7 +60,7 @@ const Button = props => {
 								>
 									{label}
 								</button>
-							</div>
+							</TabBtn>
 						)
 						: null
 			}
@@ -70,14 +71,12 @@ const Button = props => {
 Button.defaultProps = {
 	buttonClass: null,
 	containerClass: null,
-	icon: null,
 	type: DEFAULT_BTN,
 }
 
 Button.propTypes = {
 	buttonClass: Proptypes.string,
 	containerClass: Proptypes.string,
-	icon: Proptypes.node,
 	label: Proptypes.string.isRequired,
 	onClick: Proptypes.func.isRequired,
 	type: Proptypes.string,

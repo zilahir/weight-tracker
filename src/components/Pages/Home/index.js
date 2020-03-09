@@ -3,6 +3,7 @@ import React from 'react'
 import AddNew from '../../AddNew'
 import styles from './Home.module.scss'
 import History from '../../History'
+import Stats from '../../Stats'
 
 /**
 * @author zilahir
@@ -13,6 +14,7 @@ const Home = () => (
 	<div className={styles.rootContainer}>
 		<AddNew />
 		<History />
+		<Stats />
 	</div>
 )
 

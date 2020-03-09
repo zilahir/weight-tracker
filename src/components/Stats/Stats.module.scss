@@ -1,0 +1,27 @@
+@import '../../styles/mixins/heading';
+@import '../../styles/mixins/input';
+
+.statsContainer {
+    h1 {
+        @include heading(30px)
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        display: flex;
+        justify-content: space-between;
+        li {
+            button {
+                @include input;
+            }
+            &.activeBtn {
+                button {
+                    background-color: #000000;
+                    color: #ffffff;
+                    transition: all .2s ease;
+                }
+            }
+        }
+    }
+}
