@@ -17,6 +17,10 @@ import Chart from '../common/Chart'
 const Stats = () => {
 	const store = useStore()
 	const [selectedPeriod, setSelectedPeriod] = useState(1)
+
+	function handlePeriodSelection(period) {
+		setSelectedPeriod(period)
+	}
 	return (
 		<Section
 			title="Statistics"
@@ -34,7 +38,7 @@ const Stats = () => {
 							>
 								<Button
 									type={TAB_BTN}
-									onClick={() => setSelectedPeriod(currBtn.id)}
+									onClick={() => handlePeriodSelection(currBtn.id)}
 									label={currBtn.btn.toLowerCase()}
 								/>
 							</li>

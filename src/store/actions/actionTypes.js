@@ -1,3 +1,5 @@
 export const TEST = 'TEST'
 export const ADD_NEW_WEIGHT = 'ADD_NEW_WEIGHT'
 export const REMOVE_WEIGHT = 'ADD_NEW_WEIGHT'
+export const SET_CHART_DATA = 'SET_CHART_DATA'
+export const CLEAR_CHART_DATA = 'CLEAR_CHART_DATA'
