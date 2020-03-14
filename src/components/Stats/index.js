@@ -30,6 +30,7 @@ const Stats = () => {
 		switch (period.btn) {
 		case WEEK: {
 			const grouped = groupByWeek(store.getState().weight.addedWeights)
+			console.debug('grouped', grouped)
 			dispatch(setChartData(grouped))
 		}
 			break
@@ -78,7 +79,7 @@ const Stats = () => {
 				<div className={styles.infoBoxContainer}>
 					<InfoBox
 						title="Current weight"
-						content={`${currentWeight.weight} kg`}
+						content={`${currentWeight ? currentWeight.weight : 0} kg`}
 					/>
 					<InfoBox
 						title="Weight at the start of the period"

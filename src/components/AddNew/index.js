@@ -6,7 +6,8 @@ import 'react-datepicker/dist/react-datepicker.css'
 import Section from '../common/Section'
 import styles from './AddNew.module.scss'
 import Button from '../common/Button'
-import { addNewWeight } from '../../store/actions/weights'
+import { addNewWeight, clearAllWeight } from '../../store/actions/weights'
+import moment from 'moment'
 
 
 /**
@@ -22,10 +23,11 @@ const AddNew = () => {
 	function handleNewWeight() {
 		const newWeightObject = {
 			weight,
-			selectedDate,
+			selectedDate: moment(selectedDate.toString()).format('YYYY-MM-DD'),
 		}
 		Promise.all([
 			dispatch(addNewWeight(newWeightObject)),
+			// dispatch(clearAllWeight()),
 		])
 	}
 	return (

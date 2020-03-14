@@ -1,9 +1,11 @@
 @import '../../styles/mixins/_heading';
 
 .historyRoot {
+
     h1 {
         @include heading(30px);
     }
+
     ul {
         margin: 0;
         padding: 0;
@@ -12,6 +14,7 @@
         flex-direction: column;
         border: 1px solid rgba($color: #444, $alpha: .6);
         padding: 2rem;
+
         li {
             display: inline-flex;
             justify-content: space-between;
@@ -22,6 +25,17 @@
             &:last-of-type {
                 margin-bottom: 0;
             }
+        }
+    }
+
+    .del {
+        display: flex;
+        justify-content: flex-end;
+
+        button {
+            border: 0;
+            @include heading(13px);
+            line-height: 1;
         }
     }
 }

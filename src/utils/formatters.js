@@ -33,17 +33,20 @@ export const getDiff = (start, end) => {
 }
 
 export const groupByWeek = weights => {
-	const grouped = groupBy(weights, weight => moment(weight.selectedDate, 'YYYY-MM-DD').startOf('isoWeek'))
+	const grouped = groupBy(weights, weight => moment(weight.selectedDate, 'YYYY-MM-DD').startOf('isoWeek').toString())
 	const result = []
 	Object.keys(grouped).map(curr => {
 		if (curr === moment().startOf('isoWeek').toString()) {
 			grouped[curr].map(w => {
+				// console.debug(moment(w.selectedDate).format('YYYY-MM-DD'))
+				// console.debug('w', w)
 				result.push(w)
 				return true
 			})
 		}
 		return true
 	})
+	console.debug('result', result)
 	return result
 }
 

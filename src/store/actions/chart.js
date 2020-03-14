@@ -19,4 +19,7 @@ export const setPeriod = period => dispatch => new Promise(resolve => {
 			period,
 		},
 	})
+	resolve({
+		success: true,
+	})
 })
