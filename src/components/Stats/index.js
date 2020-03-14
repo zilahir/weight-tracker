@@ -17,7 +17,7 @@ import Chart from '../common/Chart'
 const Stats = () => {
 	const store = useStore()
 	const [selectedPeriod, setSelectedPeriod] = useState(1)
-	const [chartData, setChartData] = useState([])
+	const [chartData, setChartData] = useState(store.getState().weight.addedWeights)
 	function handlePeriodSelection(period) {
 		setSelectedPeriod(period)
 	}
