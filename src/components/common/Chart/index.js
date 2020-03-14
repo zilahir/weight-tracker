@@ -25,11 +25,19 @@ const Chart = props => {
 				}}
 			>
 				<CartesianGrid strokeDasharray="3 3" />
-				<XAxis dataKey="selectedDate" />
+				<XAxis
+					dataKey="selectedDate"
+				/>
 				<YAxis />
 				<Tooltip />
 				<Legend />
-				<Line type="monotone" dataKey="weight" stroke="#8884d8" activeDot={{ r: 8 }} />
+				<Line
+					type="monotone"
+					strokeWidth={4}
+					dataKey="weight"
+					stroke="#000"
+					activeDot={{ r: 8 }}
+				/>
 			</LineChart>
 		</div>
 	)
