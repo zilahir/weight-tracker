@@ -4,11 +4,11 @@ import classnames from 'classnames'
 
 import Section from '../common/Section'
 import styles from './Stats.module.scss'
-import { periodBtns, TAB_BTN, MONTH, WEEK } from '../../utils/consts'
+import { periodBtns, TAB_BTN, MONTH, WEEK, YEAR } from '../../utils/consts'
 import Button from '../common/Button'
 import Chart from '../common/Chart'
 import InfoBox from '../common/InfoBox'
-import { groupByMonth, groupByWeek } from '../../utils/formatters'
+import { groupByMonth, groupByWeek, groupByYear } from '../../utils/formatters'
 
 /**
 * @author zilahir
@@ -33,6 +33,11 @@ const Stats = () => {
 		}
 		case MONTH: {
 			const grouped = groupByMonth(store.getState().weight.addedWeights)
+			setChartData(grouped)
+			break
+		}
+		case YEAR: {
+			const grouped = groupByYear(store.getState().weight.addedWeights)
 			setChartData(grouped)
 			break
 		}

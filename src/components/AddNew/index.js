@@ -8,8 +8,8 @@ import Section from '../common/Section'
 import styles from './AddNew.module.scss'
 import Button from '../common/Button'
 import { addNewWeight } from '../../store/actions/weights'
-import { WEEK, MONTH } from '../../utils/consts'
-import { groupByWeek, groupByMonth } from '../../utils/formatters'
+import { WEEK, MONTH, YEAR } from '../../utils/consts'
+import { groupByWeek, groupByMonth, groupByYear } from '../../utils/formatters'
 import { setChartData } from '../../store/actions/chart'
 
 
@@ -32,6 +32,11 @@ const AddNew = () => {
 		}
 		case MONTH: {
 			const grouped = groupByMonth(store.getState().weight.addedWeights)
+			dispatch(setChartData(grouped))
+			break
+		}
+		case YEAR: {
+			const grouped = groupByYear(store.getState().weight.addedWeights)
 			dispatch(setChartData(grouped))
 			break
 		}
