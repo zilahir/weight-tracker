@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import Proptypes from 'prop-types'
+import moment from 'moment'
 import {
 	LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts'
@@ -11,6 +12,11 @@ import styles from './Chart.module.scss'
 * @author zilahir
 * @function Chart
 * */
+
+function formatDate(tickItem) {
+	const formattedValue = moment(tickItem).format('YYYY-MM-DD')
+	return formattedValue
+}
 
 const Chart = props => {
 	const { chartData } = props
@@ -27,6 +33,7 @@ const Chart = props => {
 				<CartesianGrid strokeDasharray="3 3" />
 				<XAxis
 					dataKey="selectedDate"
+					tickFormatter={formatDate}
 				/>
 				<YAxis />
 				<Tooltip />
