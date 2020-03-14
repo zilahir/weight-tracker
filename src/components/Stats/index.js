@@ -9,6 +9,7 @@ import { periodBtns, TAB_BTN } from '../../utils/consts'
 import Button from '../common/Button'
 import Chart from '../common/Chart'
 import InfoBox from '../common/InfoBox'
+import { groupByWeek, groupByMonth } from '../../utils/formatters'
 
 /**
 * @author zilahir
@@ -31,6 +32,7 @@ const Stats = () => {
 			store.getState().weight.addedWeights[store.getState().weight.addedWeights.length - 1],
 		)
 	}), [store])
+	console.debug('grouped', groupByMonth(store.getState().weight.addedWeights))
 	return (
 		<Section
 			title="Statistics"

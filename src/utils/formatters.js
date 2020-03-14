@@ -1,4 +1,5 @@
 import moment from 'moment'
+import { groupBy } from 'lodash'
 
 export const formatDate = date => {
 	const d = moment(date)
@@ -29,4 +30,18 @@ export const getDiff = (start, end) => {
 		diff = end - start
 	}
 	return diff
+}
+
+export const groupByWeek = weights => (
+	groupBy(weights, weight => moment(weight.selectedDate, 'YYYY-MM-DD').startOf('isoWeek'))
+)
+
+export const groupByMonth = weights => {
+	const firstDayOfMonth = moment().startOf('month').format('YYYY-MM-DD')
+	return groupBy(weights, weight => moment(weight.selectedDate, 'YYYY-MM-DD').startOf(firstDayOfMonth))
+}
+
+export const groupByYear = weights => {
+	const firstDayOfYear = moment().startOf('year')
+	return groupBy(weights, weight => moment(weight.selectedDate, 'YYYY-MM-DD').startOf(firstDayOfYear))
 }
