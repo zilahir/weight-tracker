@@ -14,11 +14,12 @@ import Section from '../common/Section'
 
 const History = () => {
 	const store = useStore()
-	const [weights, setAllWeights] = useState([])
+	const [weights, setAllWeights] = useState(store.getState().weight.addedWeights)
 
 	useEffect(() => store.subscribe(() => {
 		setAllWeights(store.getState().weight.addedWeights)
 	}), [store])
+
 	return (
 		<Section
 			title="History"
