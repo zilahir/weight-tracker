@@ -32,9 +32,20 @@ export const getDiff = (start, end) => {
 	return diff
 }
 
-export const groupByWeek = weights => (
-	groupBy(weights, weight => moment(weight.selectedDate, 'YYYY-MM-DD').startOf('isoWeek'))
-)
+export const groupByWeek = weights => {
+	const grouped = groupBy(weights, weight => moment(weight.selectedDate, 'YYYY-MM-DD').startOf('isoWeek'))
+	const result = []
+	Object.keys(grouped).map(curr => {
+		if (curr === moment().startOf('isoWeek').toString()) {
+			grouped[curr].map(w => {
+				result.push(w)
+				return true
+			})
+		}
+		return true
+	})
+	return result
+}
 
 export const groupByMonth = weights => {
 	const firstDayOfMonth = moment().startOf('month').format('YYYY-MM-DD')

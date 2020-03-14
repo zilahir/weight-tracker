@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react'
-import { useStore } from 'react-redux'
+import { useStore, useDispatch } from 'react-redux'
 import classnames from 'classnames'
 
 import Section from '../common/Section'
@@ -18,6 +18,7 @@ import { groupByWeek, groupByMonth } from '../../utils/formatters'
 
 const Stats = () => {
 	const store = useStore()
+	const dispatch = useDispatch()
 	const [selectedPeriod, setSelectedPeriod] = useState(periodBtns[0])
 	const [chartData, setChartData] = useState(store.getState().weight.addedWeights)
 	const [currentWeight, setCurrentWeight] = useState(
@@ -26,15 +27,18 @@ const Stats = () => {
 	function handlePeriodSelection(period) {
 		setSelectedPeriod(period)
 		switch (period.btn) {
-		case WEEK:
-			console.debug('hello')
+		case WEEK: {
+			const grouped = groupByWeek(store.getState().weight.addedWeights)
+			dispatch(setChartData(grouped))
+		}
 			break
 		default:
 			return period
 		}
+		return true
 	}
 	useEffect(() => store.subscribe(() => {
-		setChartData(store.getState().weight.addedWeights)
+		// setChartData(store.getState().weight.addedWeights)
 		setCurrentWeight(
 			store.getState().weight.addedWeights[store.getState().weight.addedWeights.length - 1],
 		)
