@@ -8,6 +8,7 @@ import styles from './Stats.module.scss'
 import { periodBtns, TAB_BTN } from '../../utils/consts'
 import Button from '../common/Button'
 import Chart from '../common/Chart'
+import InfoBox from '../common/InfoBox'
 
 /**
 * @author zilahir
@@ -51,6 +52,16 @@ const Stats = () => {
 				<Chart
 					chartData={chartData}
 				/>
+				<div className={styles.infoBoxContainer}>
+					<InfoBox
+						title="Current weight"
+						content={10}
+					/>
+					<InfoBox
+						title="Weight at the start of the period"
+						content={10}
+					/>
+				</div>
 			</div>
 		</Section>
 	)
