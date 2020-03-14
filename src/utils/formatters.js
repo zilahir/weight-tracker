@@ -24,12 +24,15 @@ export const formatXAxis = date => (
 
 export const getDiff = (start, end) => {
 	let diff
+	let sign
 	if (start > end) {
 		diff = start - end
+		sign = '-'
 	} else {
 		diff = end - start
+		sign = '+'
 	}
-	return diff
+	return `${sign} ${diff}`
 }
 
 export const groupByWeek = weights => {

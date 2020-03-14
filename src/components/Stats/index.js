@@ -4,7 +4,7 @@ import classnames from 'classnames'
 
 import Section from '../common/Section'
 import styles from './Stats.module.scss'
-import { periodBtns, TAB_BTN, MONTH, WEEK, YEAR } from '../../utils/consts'
+import { periodBtns, TAB_BTN, MONTH, WEEK, YEAR, LIFETIME } from '../../utils/consts'
 import Button from '../common/Button'
 import Chart from '../common/Chart'
 import InfoBox from '../common/InfoBox'
@@ -39,6 +39,10 @@ const Stats = () => {
 		case YEAR: {
 			const grouped = groupByYear(store.getState().weight.addedWeights)
 			setChartData(grouped)
+			break
+		}
+		case LIFETIME: {
+			setChartData(store.getState().weight.addedWeights)
 			break
 		}
 		default:
