@@ -1,16 +1,13 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react'
-import { useStore, useDispatch } from 'react-redux'
+import { useStore } from 'react-redux'
 import classnames from 'classnames'
 
 import Section from '../common/Section'
 import styles from './Stats.module.scss'
-import { periodBtns, TAB_BTN, WEEK } from '../../utils/consts'
+import { periodBtns, TAB_BTN } from '../../utils/consts'
 import Button from '../common/Button'
 import Chart from '../common/Chart'
 import InfoBox from '../common/InfoBox'
-import { groupByWeek, groupByMonth } from '../../utils/formatters'
-import { setChartData } from '../../store/actions/chart'
 
 /**
 * @author zilahir
@@ -19,25 +16,12 @@ import { setChartData } from '../../store/actions/chart'
 
 const Stats = () => {
 	const store = useStore()
-	const dispatch = useDispatch()
+
 	const [selectedPeriod, setSelectedPeriod] = useState(store.getState().chart.period)
-	// const [chartData, setChartData] = useState(store.getState().weight.addedWeights)
+	const [chartData, setChartData] = useState(store.getState().chart.chartData)
 	const [currentWeight, setCurrentWeight] = useState(
 		store.getState().weight.addedWeights[store.getState().weight.addedWeights.length - 1],
 	)
-
-	function createChartData(period) {
-		switch (period.btn) {
-		case WEEK: {
-			const grouped = groupByWeek(store.getState().weight.addedWeights)
-			dispatch(setChartData(grouped))
-		}
-			break
-		default:
-			return period
-		}
-		return true
-	}
 
 	function handlePeriodSelection(period) {
 		setSelectedPeriod(period)
@@ -46,6 +30,7 @@ const Stats = () => {
 		setCurrentWeight(
 			store.getState().weight.addedWeights[store.getState().weight.addedWeights.length - 1],
 		)
+		setChartData(store.getState().chart.chartData)
 	}), [store, currentWeight])
 	return (
 		<Section
@@ -72,7 +57,7 @@ const Stats = () => {
 					}
 				</ul>
 				<Chart
-					chartData={store.getState().chart.chartData}
+					chartData={chartData}
 				/>
 				<div className={styles.infoBoxContainer}>
 					<InfoBox

@@ -36,14 +36,13 @@ export const groupByWeek = weights => {
 	const grouped = groupBy(weights, weight => moment(weight.selectedDate, 'YYYY-MM-DD').startOf('isoWeek').toString())
 	const result = []
 	Object.keys(grouped).map(curr => {
-		if (curr === moment().startOf('isoWeek').toString()) {
-			grouped[curr].map(w => {
-				result.push(w)
-				return true
-			})
+		const sum = grouped[curr].reduce((s, { weight }) => s + weight, 0)
+		const avg = sum / grouped[curr].length
+		result[curr] = {
+			weight: avg,
 		}
-		return true
 	})
+	console.debug(result)
 	return result
 }
 

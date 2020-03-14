@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useStore } from 'react-redux'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import moment from 'moment'
@@ -8,6 +8,9 @@ import Section from '../common/Section'
 import styles from './AddNew.module.scss'
 import Button from '../common/Button'
 import { addNewWeight } from '../../store/actions/weights'
+import { WEEK } from '../../utils/consts'
+import { groupByWeek } from '../../utils/formatters'
+import { setChartData } from '../../store/actions/chart'
 
 
 /**
@@ -19,6 +22,20 @@ const AddNew = () => {
 	const [selectedDate, setSelectedDate] = useState(new Date())
 	const [weight, setWeight] = useState(0)
 	const dispatch = useDispatch()
+	const store = useStore()
+	function createChartData(period) {
+		switch (period.btn) {
+		case WEEK: {
+			const grouped = groupByWeek(store.getState().weight.addedWeights)
+			dispatch(setChartData(grouped))
+		}
+			break
+		default:
+			return period
+		}
+		return true
+	}
+
 
 	function handleNewWeight() {
 		const newWeightObject = {
@@ -27,7 +44,9 @@ const AddNew = () => {
 		}
 		Promise.all([
 			dispatch(addNewWeight(newWeightObject)),
-		])
+		]).then(() => {
+			createChartData(store.getState().chart.period)
+		})
 	}
 	return (
 		<Section

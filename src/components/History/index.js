@@ -32,7 +32,7 @@ const History = () => {
 		>
 			<div className={styles.del}>
 				<button
-					onChange={() => clearHistory()}
+					onClick={() => clearHistory()}
 					type="button"
 				>
 					clear
