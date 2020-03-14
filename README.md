@@ -4,6 +4,11 @@ Solution of the frontend _practive_ project `Weight tracker` found on [youtube](
 
 This projects has the following dependencies 
 
+1) redux
+2) lodash
+3) moment
+4) recharts
+
 ## Requirements 
 
 
