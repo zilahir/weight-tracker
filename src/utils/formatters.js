@@ -38,11 +38,12 @@ export const groupByWeek = weights => {
 	Object.keys(grouped).map(curr => {
 		const sum = grouped[curr].reduce((s, { weight }) => s + weight, 0)
 		const avg = sum / grouped[curr].length
-		result[curr] = {
+		result.push({
 			weight: avg,
-		}
+			selectedDate: curr,
+		})
+		return true
 	})
-	console.debug(result)
 	return result
 }
 
