@@ -19,11 +19,17 @@ const Stats = () => {
 	const store = useStore()
 	const [selectedPeriod, setSelectedPeriod] = useState(1)
 	const [chartData, setChartData] = useState(store.getState().weight.addedWeights)
+	const [currentWeight, setCurrentWeight] = useState(
+		store.getState().weight.addedWeights[store.getState().weight.addedWeights.length - 1],
+	)
 	function handlePeriodSelection(period) {
 		setSelectedPeriod(period)
 	}
 	useEffect(() => store.subscribe(() => {
 		setChartData(store.getState().weight.addedWeights)
+		setCurrentWeight(
+			store.getState().weight.addedWeights[store.getState().weight.addedWeights.length - 1],
+		)
 	}), [store])
 	return (
 		<Section
@@ -55,7 +61,7 @@ const Stats = () => {
 				<div className={styles.infoBoxContainer}>
 					<InfoBox
 						title="Current weight"
-						content={10}
+						content={`${currentWeight.weight} kg`}
 					/>
 					<InfoBox
 						title="Weight at the start of the period"
