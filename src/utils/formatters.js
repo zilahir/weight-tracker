@@ -38,15 +38,12 @@ export const groupByWeek = weights => {
 	Object.keys(grouped).map(curr => {
 		if (curr === moment().startOf('isoWeek').toString()) {
 			grouped[curr].map(w => {
-				// console.debug(moment(w.selectedDate).format('YYYY-MM-DD'))
-				// console.debug('w', w)
 				result.push(w)
 				return true
 			})
 		}
 		return true
 	})
-	console.debug('result', result)
 	return result
 }
 

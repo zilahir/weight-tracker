@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import moment from 'moment'
 
 import Section from '../common/Section'
 import styles from './AddNew.module.scss'
 import Button from '../common/Button'
-import { addNewWeight, clearAllWeight } from '../../store/actions/weights'
-import moment from 'moment'
+import { addNewWeight } from '../../store/actions/weights'
 
 
 /**
@@ -27,7 +27,6 @@ const AddNew = () => {
 		}
 		Promise.all([
 			dispatch(addNewWeight(newWeightObject)),
-			// dispatch(clearAllWeight()),
 		])
 	}
 	return (

@@ -30,7 +30,6 @@ const Stats = () => {
 		switch (period.btn) {
 		case WEEK: {
 			const grouped = groupByWeek(store.getState().weight.addedWeights)
-			console.debug('grouped', grouped)
 			dispatch(setChartData(grouped))
 		}
 			break
@@ -44,11 +43,10 @@ const Stats = () => {
 		setSelectedPeriod(period)
 	}
 	useEffect(() => store.subscribe(() => {
-		createChartData(selectedPeriod)
 		setCurrentWeight(
 			store.getState().weight.addedWeights[store.getState().weight.addedWeights.length - 1],
 		)
-	}), [store])
+	}), [store, currentWeight])
 	return (
 		<Section
 			title="Statistics"
