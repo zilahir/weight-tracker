@@ -7,16 +7,12 @@ import {
 } from 'recharts'
 
 import styles from './Chart.module.scss'
+import { formatXAxis } from '../../../utils/formatters'
 
 /**
 * @author zilahir
 * @function Chart
 * */
-
-function formatDate(tickItem) {
-	const formattedValue = moment(tickItem).format('YYYY-MM-DD')
-	return formattedValue
-}
 
 const Chart = props => {
 	const { chartData } = props
@@ -33,7 +29,7 @@ const Chart = props => {
 				<CartesianGrid strokeDasharray="3 3" />
 				<XAxis
 					dataKey="selectedDate"
-					tickFormatter={formatDate}
+					tickFormatter={formatXAxis}
 				/>
 				<YAxis />
 				<Tooltip />

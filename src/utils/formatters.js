@@ -16,3 +16,7 @@ export const formatDate = date => {
 export const formatWeight = weight => (
 	weight.toFixed(1)
 )
+
+export const formatXAxis = date => (
+	moment(date).format('YYYY-MM-DD')
+)
