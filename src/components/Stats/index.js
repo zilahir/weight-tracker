@@ -10,6 +10,7 @@ import Button from '../common/Button'
 import Chart from '../common/Chart'
 import InfoBox from '../common/InfoBox'
 import { groupByWeek, groupByMonth } from '../../utils/formatters'
+import { setChartData } from '../../store/actions/chart'
 
 /**
 * @author zilahir
@@ -20,12 +21,12 @@ const Stats = () => {
 	const store = useStore()
 	const dispatch = useDispatch()
 	const [selectedPeriod, setSelectedPeriod] = useState(store.getState().chart.period)
-	const [chartData, setChartData] = useState(store.getState().weight.addedWeights)
+	// const [chartData, setChartData] = useState(store.getState().weight.addedWeights)
 	const [currentWeight, setCurrentWeight] = useState(
 		store.getState().weight.addedWeights[store.getState().weight.addedWeights.length - 1],
 	)
 
-	function createChartData (period) {
+	function createChartData(period) {
 		switch (period.btn) {
 		case WEEK: {
 			const grouped = groupByWeek(store.getState().weight.addedWeights)
@@ -42,7 +43,7 @@ const Stats = () => {
 		setSelectedPeriod(period)
 	}
 	useEffect(() => store.subscribe(() => {
-		// setChartData([])
+		createChartData(selectedPeriod)
 		setCurrentWeight(
 			store.getState().weight.addedWeights[store.getState().weight.addedWeights.length - 1],
 		)
@@ -72,7 +73,7 @@ const Stats = () => {
 					}
 				</ul>
 				<Chart
-					chartData={chartData}
+					chartData={store.getState().chart.chartData}
 				/>
 				<div className={styles.infoBoxContainer}>
 					<InfoBox
