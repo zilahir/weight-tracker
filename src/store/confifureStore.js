@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
-import test from './reducers/test'
+import chart from './reducers/chart'
 import weight from './reducers/weights'
 
 const persistConfig = {
@@ -12,8 +12,8 @@ const persistConfig = {
 }
 
 const rootReducer = combineReducers({
-	test,
 	weight,
+	chart,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

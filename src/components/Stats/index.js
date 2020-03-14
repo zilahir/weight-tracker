@@ -19,13 +19,13 @@ import { groupByWeek, groupByMonth } from '../../utils/formatters'
 const Stats = () => {
 	const store = useStore()
 	const dispatch = useDispatch()
-	const [selectedPeriod, setSelectedPeriod] = useState(periodBtns[0])
+	const [selectedPeriod, setSelectedPeriod] = useState(store.getState().chart.period)
 	const [chartData, setChartData] = useState(store.getState().weight.addedWeights)
 	const [currentWeight, setCurrentWeight] = useState(
 		store.getState().weight.addedWeights[store.getState().weight.addedWeights.length - 1],
 	)
-	function handlePeriodSelection(period) {
-		setSelectedPeriod(period)
+
+	function createChartData (period) {
 		switch (period.btn) {
 		case WEEK: {
 			const grouped = groupByWeek(store.getState().weight.addedWeights)
@@ -37,8 +37,12 @@ const Stats = () => {
 		}
 		return true
 	}
+
+	function handlePeriodSelection(period) {
+		setSelectedPeriod(period)
+	}
 	useEffect(() => store.subscribe(() => {
-		// setChartData(store.getState().weight.addedWeights)
+		// setChartData([])
 		setCurrentWeight(
 			store.getState().weight.addedWeights[store.getState().weight.addedWeights.length - 1],
 		)
