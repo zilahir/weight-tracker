@@ -5,7 +5,7 @@ import classnames from 'classnames'
 
 import Section from '../common/Section'
 import styles from './Stats.module.scss'
-import { periodBtns, TAB_BTN } from '../../utils/consts'
+import { periodBtns, TAB_BTN, WEEK } from '../../utils/consts'
 import Button from '../common/Button'
 import Chart from '../common/Chart'
 import InfoBox from '../common/InfoBox'
@@ -18,13 +18,20 @@ import { groupByWeek, groupByMonth } from '../../utils/formatters'
 
 const Stats = () => {
 	const store = useStore()
-	const [selectedPeriod, setSelectedPeriod] = useState(1)
+	const [selectedPeriod, setSelectedPeriod] = useState(periodBtns[0])
 	const [chartData, setChartData] = useState(store.getState().weight.addedWeights)
 	const [currentWeight, setCurrentWeight] = useState(
 		store.getState().weight.addedWeights[store.getState().weight.addedWeights.length - 1],
 	)
 	function handlePeriodSelection(period) {
 		setSelectedPeriod(period)
+		switch (period.btn) {
+		case WEEK:
+			console.debug('hello')
+			break
+		default:
+			return period
+		}
 	}
 	useEffect(() => store.subscribe(() => {
 		setChartData(store.getState().weight.addedWeights)
@@ -32,7 +39,6 @@ const Stats = () => {
 			store.getState().weight.addedWeights[store.getState().weight.addedWeights.length - 1],
 		)
 	}), [store])
-	console.debug('grouped', groupByMonth(store.getState().weight.addedWeights))
 	return (
 		<Section
 			title="Statistics"
@@ -45,12 +51,12 @@ const Stats = () => {
 							<li
 								key={currBtn.id}
 								className={classnames(
-									selectedPeriod === currBtn.id ? styles.activeBtn : null,
+									selectedPeriod.id === currBtn.id ? styles.activeBtn : null,
 								)}
 							>
 								<Button
 									type={TAB_BTN}
-									onClick={() => handlePeriodSelection(currBtn.id)}
+									onClick={() => handlePeriodSelection(currBtn)}
 									label={currBtn.btn.toLowerCase()}
 								/>
 							</li>
