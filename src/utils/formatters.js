@@ -20,3 +20,13 @@ export const formatWeight = weight => (
 export const formatXAxis = date => (
 	moment(date).format('DD MMM')
 )
+
+export const getDiff = (start, end) => {
+	let diff
+	if (start > end) {
+		diff = start - end
+	} else {
+		diff = end - start
+	}
+	return diff
+}
