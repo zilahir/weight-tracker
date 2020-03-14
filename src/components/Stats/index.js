@@ -8,7 +8,7 @@ import { periodBtns, TAB_BTN, MONTH, WEEK, YEAR } from '../../utils/consts'
 import Button from '../common/Button'
 import Chart from '../common/Chart'
 import InfoBox from '../common/InfoBox'
-import { groupByMonth, groupByWeek, groupByYear } from '../../utils/formatters'
+import { groupByMonth, groupByWeek, groupByYear, getDiff } from '../../utils/formatters'
 
 /**
 * @author zilahir
@@ -86,13 +86,16 @@ const Stats = () => {
 					/>
 					<InfoBox
 						title="Weight at the start of the period"
-						content={10}
+						content={`${store.getState().chart.chartData.length ? store.getState().chart.chartData[0].weight : 0} kg`}
 					/>
 				</div>
 				<div className={styles.infoBoxContainer}>
 					<InfoBox
 						title="Progress"
-						content={10}
+						content={`${store.getState().chart.chartData.length ? getDiff(
+							store.getState().chart.chartData[0].weight,
+							currentWeight.weight,
+						) : 0} kg`}
 					/>
 				</div>
 			</div>
