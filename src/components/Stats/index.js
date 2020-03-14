@@ -89,6 +89,12 @@ const Stats = () => {
 						content={10}
 					/>
 				</div>
+				<div className={styles.infoBoxContainer}>
+					<InfoBox
+						title="Progress"
+						content={10}
+					/>
+				</div>
 			</div>
 		</Section>
 	)
