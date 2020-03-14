@@ -8,8 +8,8 @@ import Section from '../common/Section'
 import styles from './AddNew.module.scss'
 import Button from '../common/Button'
 import { addNewWeight } from '../../store/actions/weights'
-import { WEEK } from '../../utils/consts'
-import { groupByWeek } from '../../utils/formatters'
+import { WEEK, MONTH } from '../../utils/consts'
+import { groupByWeek, groupByMonth } from '../../utils/formatters'
 import { setChartData } from '../../store/actions/chart'
 
 
@@ -28,8 +28,13 @@ const AddNew = () => {
 		case WEEK: {
 			const grouped = groupByWeek(store.getState().weight.addedWeights)
 			dispatch(setChartData(grouped))
-		}
 			break
+		}
+		case MONTH: {
+			const grouped = groupByMonth(store.getState().weight.addedWeights)
+			dispatch(setChartData(grouped))
+			break
+		}
 		default:
 			return period
 		}

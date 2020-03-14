@@ -48,11 +48,31 @@ export const groupByWeek = weights => {
 }
 
 export const groupByMonth = weights => {
-	const firstDayOfMonth = moment().startOf('month').format('YYYY-MM-DD')
-	return groupBy(weights, weight => moment(weight.selectedDate, 'YYYY-MM-DD').startOf(firstDayOfMonth))
+	const grouped = groupBy(weights, weight => moment(weight.selectedDate, 'YYYY-MM-DD').startOf('month'))
+	const result = []
+	Object.keys(grouped).map(curr => {
+		const sum = grouped[curr].reduce((s, { weight }) => s + weight, 0)
+		const avg = sum / grouped[curr].length
+		result.push({
+			weight: avg,
+			selectedDate: curr,
+		})
+		return true
+	})
+	return result
 }
 
 export const groupByYear = weights => {
-	const firstDayOfYear = moment().startOf('year')
-	return groupBy(weights, weight => moment(weight.selectedDate, 'YYYY-MM-DD').startOf(firstDayOfYear))
+	const grouped = groupBy(weights, weight => moment(weight.selectedDate, 'YYYY-MM-DD').startOf('year'))
+	const result = []
+	Object.keys(grouped).map(curr => {
+		const sum = grouped[curr].reduce((s, { weight }) => s + weight, 0)
+		const avg = sum / grouped[curr].length
+		result.push({
+			weight: avg,
+			selectedDate: curr,
+		})
+		return true
+	})
+	return result
 }

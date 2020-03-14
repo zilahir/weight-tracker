@@ -4,10 +4,11 @@ import classnames from 'classnames'
 
 import Section from '../common/Section'
 import styles from './Stats.module.scss'
-import { periodBtns, TAB_BTN } from '../../utils/consts'
+import { periodBtns, TAB_BTN, MONTH, WEEK } from '../../utils/consts'
 import Button from '../common/Button'
 import Chart from '../common/Chart'
 import InfoBox from '../common/InfoBox'
+import { groupByMonth, groupByWeek } from '../../utils/formatters'
 
 /**
 * @author zilahir
@@ -16,7 +17,6 @@ import InfoBox from '../common/InfoBox'
 
 const Stats = () => {
 	const store = useStore()
-
 	const [selectedPeriod, setSelectedPeriod] = useState(store.getState().chart.period)
 	const [chartData, setChartData] = useState(store.getState().chart.chartData)
 	const [currentWeight, setCurrentWeight] = useState(
@@ -25,6 +25,21 @@ const Stats = () => {
 
 	function handlePeriodSelection(period) {
 		setSelectedPeriod(period)
+		switch (period.btn) {
+		case WEEK: {
+			const grouped = groupByWeek(store.getState().weight.addedWeights)
+			setChartData(grouped)
+			break
+		}
+		case MONTH: {
+			const grouped = groupByMonth(store.getState().weight.addedWeights)
+			setChartData(grouped)
+			break
+		}
+		default:
+			return true
+		}
+		return true
 	}
 	useEffect(() => store.subscribe(() => {
 		setCurrentWeight(
