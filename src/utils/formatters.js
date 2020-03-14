@@ -18,5 +18,5 @@ export const formatWeight = weight => (
 )
 
 export const formatXAxis = date => (
-	moment(date).format('YYYY-MM-DD')
+	moment(date).format('DD MMM')
 )
